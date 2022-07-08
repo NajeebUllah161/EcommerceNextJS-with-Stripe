@@ -5,7 +5,6 @@ const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 export default async function handler(req, res) {
     if (req.method === 'POST') {
 
-        console.log(req.body);
         try {
 
             const params = {
@@ -19,8 +18,8 @@ export default async function handler(req, res) {
                 ],
                 line_items: req.body.map((item)=> {
                     const img = item.image[0].asset._ref;
-                    const newImage = img.replace('image-', 'https://cdn.sanity.io/images/svckaps2/prodcution/').replace('-webp','.webp');
-                    
+                    const newImage = img.replace('image-', 'https://cdn.sanity.io/images/svckaps2/production/').replace('-webp','.webp');
+                    console.log(newImage);
                     return {
                         price_data:{
                             currency: 'usd',
